@@ -6,6 +6,7 @@ import {
   ValidationPipe,
   UsePipes,
 } from '@nestjs/common';
+import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { Topic } from './topic.model';
 import { TopicService } from './topic.service';
 import { CreateTopicDto } from './dto/create-topic.dto';
@@ -15,6 +16,8 @@ export class TopicController {
   constructor(private topicService: TopicService) {}
 
   @Get()
+  @ApiOperation({ summary: 'Return all the topics' })
+  @ApiResponse({ status: 200, description: 'All the topics' })
   getTopics(): Topic[] {
     return this.topicService.getTopics();
   }
