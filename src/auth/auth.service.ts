@@ -6,7 +6,11 @@ import { AuthRepository } from './auth.repository';
 export class AuthService {
   constructor(private authRepository: AuthRepository) {}
 
-  async signIn(credentials: AuthCredentialsDTO): Promise<void> {
+  async signUp(credentials: AuthCredentialsDTO): Promise<void> {
     await this.authRepository.createUser(credentials);
+  }
+
+  signIn(credentials: AuthCredentialsDTO): Promise<string> {
+    return this.authRepository.validatePassword(credentials);
   }
 }
